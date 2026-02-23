@@ -12,11 +12,11 @@ processors:
 exporters:
   # Traces -> Tempo
   otlp/tempo:
-    endpoint: tempo:4317
+    endpoint: http://tempo:4317
     tls:
       insecure: true
 
-  # Logs -> Loki (minimal config to avoid schema mismatches)
+  # Logs -> Loki
   loki:
     endpoint: http://loki:3100/loki/api/v1/push
 
