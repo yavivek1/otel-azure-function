@@ -61,7 +61,17 @@
                     <resourceGroup>java-functions-group</resourceGroup>
                     <region>westus</region>
                     <runtime><os>windows</os><javaVersion>17</javaVersion></runtime>
+                    <stagingDirectory>${project.build.directory}/azure-functions/${project.artifactId}-${project.version}</stagingDirectory>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>package-functions</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

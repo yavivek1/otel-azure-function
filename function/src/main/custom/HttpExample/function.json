@@ -1,0 +1,20 @@
+{
+  "scriptFile": "../otel-azure-function-1.0-SNAPSHOT.jar",
+  "entryPoint": "com.example.Function.run",
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "name": "req",
+      "direction": "in",
+      "methods": [
+        "get"
+      ],
+      "authLevel": "anonymous"
+    },
+    {
+      "type": "http",
+      "name": "$return",
+      "direction": "out"
+    }
+  ]
+}

@@ -55,6 +55,15 @@
         <groupId>com.microsoft.azure</groupId>
         <artifactId>azure-functions-maven-plugin</artifactId>
         <version>1.24.0</version>
+        <executions>
+          <execution>
+            <id>package-functions</id>
+            <phase>package</phase>
+            <goals>
+              <goal>package</goal>
+            </goals>
+          </execution>
+        </executions>
         <configuration>
           <appName>otel-java-func</appName>
           <resourceGroup>java-functions-group</resourceGroup>
@@ -63,6 +72,7 @@
             <os>windows</os>
             <javaVersion>17</javaVersion>
           </runtime>
+          <stagingDirectory>${project.build.directory}/azure-functions/${project.artifactId}-${project.version}</stagingDirectory>
         </configuration>
       </plugin>
     </plugins>
