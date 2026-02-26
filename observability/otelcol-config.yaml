@@ -11,29 +11,34 @@ processors:
 
 exporters:
   # Traces -> Tempo
-  otlp/tempo:
-    endpoint: http://tempo:4317
+  otlp_grpc/tempo:
+    endpoint: tempo:4317
     tls:
       insecure: true
 
-  # Logs -> Loki
-  loki:
-    endpoint: http://loki:3100/loki/api/v1/push
+  # Logs -> Loki via OTLP HTTP
+  otlp_http/loki:
+    endpoint: http://loki:3100/otlp
+
+  debug:
+    verbosity: detailed
 
   # Metrics -> Mimir via Prometheus Remote Write
   prometheusremotewrite/mimir:
     endpoint: http://mimir:9009/api/v1/push
+    resource_to_telemetry_conversion:
+      enabled: true
 
 service:
   pipelines:
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [otlp/tempo]
+      exporters: [otlp_grpc/tempo]
     logs:
       receivers: [otlp]
       processors: [batch]
-      exporters: [loki]
+      exporters: [otlp_http/loki, debug]
     metrics:
       receivers: [otlp]
       processors: [batch]

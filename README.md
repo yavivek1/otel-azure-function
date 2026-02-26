@@ -9,3 +9,15 @@ the otel trace, metrics, logs should propagate to a otel exporter(grafana alloy)
 
 Java Azure Function with manual OpenTelemetry instrumentation for logs, metrics, and traces
 
+
+-----
+
+use these in grafana..
+
+
+Use these in Grafana
+
+Loki: {service_name="otel-azure-function"}
+Mimir: http_server_requests_total{service_name="otel-azure-function"}
+Tempo: Search with service name otel-azure-function in TraceQL/Search UI.
+
